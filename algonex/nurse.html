@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            color: black;
+        }
+        input, select, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            text-align: left;
+            padding: 10px;
+        }
+        th {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Nurse Management System</h2>
+        <label for="nurseName">Nurse Name:</label>
+        <input type="text" id="nurseName" placeholder="Enter nurse name">
+        
+        <label for="nurseID">Nurse ID:</label>
+        <input type="text" id="nurseID" placeholder="Enter nurse ID">
+        
+        <label for="department">Department:</label>
+        <input type="text" id="department" placeholder="Enter department">
+        
+        <label for="shiftTime">Shift Timing:</label>
+        <select id="shiftTime">
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Night">Night</option>
+        </select>
+        
+        <label for="bedNumber">Bed Number:</label>
+        <input type="text" id="bedNumber" placeholder="Enter bed number">
+        
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" placeholder="Enter patient name">
+        
+        <button onclick="assignNurse()">Assign Nurse</button>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nurse Name</th>
+                    <th>Nurse ID</th>
+                    <th>Department</th>
+                    <th>Shift</th>
+                    <th>Bed Number</th>
+                    <th>Patient Name</th>
+                </tr>
+            </thead>
+            <tbody id="nurseTableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function assignNurse() {
+            let name = document.getElementById("nurseName").value;
+            let id = document.getElementById("nurseID").value;
+            let department = document.getElementById("department").value;
+            let shift = document.getElementById("shiftTime").value;
+            let bed = document.getElementById("bedNumber").value;
+            let patient = document.getElementById("patientName").value;
+
+            if (name === "" || id === "" || department === "" || bed === "" || patient === "") {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            let tableBody = document.getElementById("nurseTableBody");
+            let newRow = tableBody.insertRow();
+
+            newRow.insertCell(0).innerText = name;
+            newRow.insertCell(1).innerText = id;
+            newRow.insertCell(2).innerText = department;
+            newRow.insertCell(3).innerText = shift;
+            newRow.insertCell(4).innerText = bed;
+            newRow.insertCell(5).innerText = patient;
+
+            document.getElementById("nurseName").value = "";
+            document.getElementById("nurseID").value = "";
+            document.getElementById("department").value = "";
+            document.getElementById("bedNumber").value = "";
+            document.getElementById("patientName").value = "";
+        }
+    </script>
+</body>
+</html>
